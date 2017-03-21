@@ -29,6 +29,14 @@ script:
   - yarn build
   - yarn compile
   - yarn wp:build
+
+  - npm update
+  - npm install
+  - yarn test
+  - yarn lint
+  - yarn build
+  - yarn compile
+  - yarn wp:build
 after_script:
   - if [ -f npm-debug.log ]; then cat npm-debug.log; fi
 cache:
