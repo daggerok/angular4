@@ -69,10 +69,20 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 
 /*
 declare var process: any;
-if (process || { env: undefined }).env.DEVELOPEMNT) {
+ if (typeof IS_PRODUCTION === 'undefined' || !IS_PRODUCTION) {
   Error['stackTraceLimit'] = Infinity;
   require('zone.js/dist/long-stack-trace-zone');
 }
 */
+
+import { environment } from './environments/environment';
+
+declare var IS_PRODUCTION: any;
+declare var require: any;
+
+if (!environment.production && !(typeof IS_PRODUCTION !== 'undefined' && IS_PRODUCTION)) {
+  Error['stackTraceLimit'] = Infinity;
+  require('zone.js/dist/long-stack-trace-zone');
+}
 
 import 'rxjs';

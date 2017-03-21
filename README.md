@@ -5,7 +5,7 @@
 webpack
 
 ```bash
-ncu -u -x typescript,codelyzer
+ncu -u -x @types/jasmine,typescript,codelyzer
 ```
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will
