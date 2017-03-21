@@ -1,30 +1,30 @@
 {
-  "name": "angular4-quickstart",
+  "name": "angular4-webpack2-quickstart",
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod --aot",
-    "preng:serve": "npm run build",
-    "ng:serve": "lite-server",
-    "test": "ng test --singleRun",
-    "ttd": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "wp:start": "concurrently 'npm run webpack-dev-server' -k -s first -n start --prefix [{name}:{pid}] -c magenta #black,red,green,yellow,blue,magenta,cyan,white,gray,bgBlack,bgRed,bgGreen,bgYellow,bgBlue,bgMagenta,bgCyan,bgWhite",
+    "start": "concurrently 'npm run webpack-dev-server' -k -s first -n start --prefix [{name}:{pid}] -c magenta #black,red,green,yellow,blue,magenta,cyan,white,gray,bgBlack,bgRed,bgGreen,bgYellow,bgBlue,bgMagenta,bgCyan,bgWhite",
     "webpack-dev-server": "webpack-dev-server --env development",
     "precompile": "rimraf -rf ./dist",
-    "compile": "webpack --progress --colors",
-    "wp:build": "npm run compile -- --env production",
-    "prewp:serve": "npm run wp:build",
-    "wp:serve": "lite-server"
+    "compile": "webpack --progress --colors --display-error-details",
+    "ghpages": "npm run compile -- --env ghpages",
+    "build": "npm run compile -- --env production",
+    "preserve": "npm run build",
+    "serve": "lite-server --config ls-config.js",
+    "lint": "tslint --config tslint.json 'src/**/*.ts' 'e2e/**/*.ts'",
+    "pretest": "npm run compile",
+    "test": "concurrently 'npm run protractor' 'npm run server' --kill-others --success first -p '[{name}]' -n 'E2E,HTTP' -c 'green,cyan'",
+    "protractor": "protractor ./protractor.config.js",
+    "preprotractor": "npm-run-all sleep webdriver-manager-update",
+    "sleep": "sleep 1",
+    "webdriver-manager-update": "webdriver-manager update",
+    "start-server": "browser-sync start --config bs-config.js",
+    "server": "npm run start-server -- --no-notify --no-open --no-online --no-inject-changes --no-reload-on-restart"
   },
   "pre-push": [
     "test",
     "lint",
-    "build",
-    "wp:build"
+    "build"
   ],
   "private": true,
   "dependencies": {
@@ -42,10 +42,11 @@
     "zone.js": "0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.0-rc.2",
+    "@angular/cli": "1.0.0-rc.4",
     "@angular/compiler-cli": ">=4.0.0-rc.5 <5.0.0",
-    "@types/jasmine": "2.5.46",
+    "@types/jasmine": "2.5.45",
     "@types/node": "7.0.8",
+    "@types/selenium-webdriver": "3.0.0",
     "@ultimate/aot-loader": "0.1.14",
     "angular2-router-loader": "0.3.5",
     "angular2-template-loader": "0.6.2",
@@ -59,13 +60,17 @@
     "babel-preset-env": "1.2.2",
     "babel-preset-stage-0": "6.22.0",
     "base-href-webpack-plugin": "1.0.2",
+    "browser-sync": "2.18.8",
     "codelyzer": "<3.0.0",
     "compression-webpack-plugin": "0.3.2",
     "concurrently": "3.4.0",
+    "connect-history-api-fallback": "1.3.0",
+    "cross-env": "^3.2.4",
     "css-loader": "0.27.3",
     "extract-text-webpack-plugin": "2.1.0",
     "file-loader": "0.10.1",
     "html-webpack-plugin": "2.28.0",
+    "http-proxy-middleware": "0.17.4",
     "image-webpack-loader": "3.2.0",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "3.2.0",
@@ -79,6 +84,7 @@
     "less-loader": "4.0.0",
     "lite-server": "2.3.0",
     "node-sass": "4.5.0",
+    "npm-run-all": "4.0.2",
     "postcss-loader": "1.3.3",
     "pre-push": "0.1.1",
     "precss": "1.4.0",
@@ -89,20 +95,36 @@
     "sass-loader": "6.0.3",
     "script-ext-html-webpack-plugin": "1.7.1",
     "source-map-loader": "0.2.0",
-    "style-loader": "0.14.1",
+    "style-loader": "0.15.0",
     "stylus": "0.54.5",
     "stylus-loader": "3.0.1",
-    "ts-node": "2.1.1",
-    "tslint": "4.5.1",
-    "typescript": ">=2.1.0 <2.2.0",
+    "ts-node": "3.0.0",
+    "tslint": "^4.5.1",
+    "typescript": "2.2.1",
     "url-loader": "0.5.8",
     "webpack": "2.2.1",
     "webpack-dev-server": "2.4.2"
   },
   "babel": {
     "presets": [
-      "env",
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "last 4 versions",
+              "safari >= 7"
+            ]
+          }
+        }
+      ],
       "stage-0"
+    ],
+    "plugins": [
+      "add-module-exports",
+      "syntax-dynamic-import",
+      "transform-class-properties",
+      "transform-decorators-legacy"
     ]
   },
   "description": "angular4 using @angular/cli and webpack 2",
@@ -112,5 +134,13 @@
     "@angular/cli",
     "webpack 2"
   ],
-  "author": "daggerok"
+  "author": "daggerok",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daggerok/angular4.git"
+  },
+  "bugs": {
+    "url": "https://github.com/daggerok/angular4/issues"
+  },
+  "homepage": "https://github.com/daggerok/angular4#readme"
 }

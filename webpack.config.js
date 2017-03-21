@@ -275,9 +275,9 @@ module.exports = env => ({
     new NoEmitOnErrorsPlugin(),
 
     new DefinePlugin({
+      IS_PRODUCTION: isProd(env),
       'process.env': {
         NODE_ENV: JSON.stringify(isProd(env) ? 'production' : 'development'),
-        DEVELOPMENT: !isProd(env),
       },
     }),
 

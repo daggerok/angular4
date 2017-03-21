@@ -69,7 +69,7 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 
 /*
 declare var process: any;
-if (process || { env: undefined }).env.DEVELOPEMNT) {
+if (!IS_PRODUCTION) {
   Error['stackTraceLimit'] = Infinity;
   require('zone.js/dist/long-stack-trace-zone');
 }
