@@ -9,6 +9,7 @@ const {
   ContextReplacementPlugin,
   NoEmitOnErrorsPlugin,
   LoaderOptionsPlugin,
+  ProvidePlugin,
   DefinePlugin,
   optimize,
 } = require('webpack');
@@ -301,7 +302,12 @@ module.exports = env => ({
     new BaseHrefWebpackPlugin({ baseHref: publicPath(env), }),
 
     new HtmlWebpackPlugin({
-      chunks: 'all',
+      chunks: [
+        'app',
+        'vendors',
+        'polyfills',
+        'manifest',
+      ],
       favicon: './src/favicon.ico',
       template: './src/index.html',
       minify: isProd(env) ? {
@@ -345,6 +351,12 @@ module.exports = env => ({
     isProd(env) ? new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer',
     }) : undefined,
+
+    new ProvidePlugin({
+      jQuery: 'jquery',
+      $: 'jquery',
+      jquery: 'jquery',
+    }),
 
   ].filter(plugin => !!plugin),
 

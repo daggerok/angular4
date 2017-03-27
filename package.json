@@ -22,9 +22,7 @@
     "server": "npm run start-server -- --no-notify --no-open --no-online --no-inject-changes --no-reload-on-restart"
   },
   "pre-push": [
-    "test",
-    "lint",
-    "build"
+    "compile"
   ],
   "private": true,
   "dependencies": {
@@ -36,8 +34,16 @@
     "@angular/platform-browser": ">=4.0.0-rc.5 <5.0.0",
     "@angular/platform-browser-dynamic": ">=4.0.0-rc.5 <5.0.0",
     "@angular/router": ">=4.0.0-rc.5 <5.0.0",
-    "core-js": "2.4.1",
-    "normalize.css": "5.0.0",
+    "@types/core-js": "0.9.37",
+    "bootstrap": "3.3.7",
+    "bootswatch": "3.3.7",
+    "es6-promise": "4.1.0",
+    "es6-shim": "0.35.3",
+    "ie-shim": "0.1.0",
+    "jquery": "3.1.1",
+    "ng2-popover": "0.0.14",
+    "reflect-metadata": "0.1.10",
+    "ts-helpers": "1.1.2",
     "rxjs": "5.2.0",
     "zone.js": "0.8.4"
   },

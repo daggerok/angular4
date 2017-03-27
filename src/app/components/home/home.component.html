@@ -1,0 +1,30 @@
+<div class="au-home">
+  <au-jumbotron>
+    <h1>Management Console</h1>
+
+    <p>Chose an administrative action</p>
+  </au-jumbotron>
+
+  <ul class="nav nav-pills nav-stacked">
+    <li class="list-group" *ngFor="let link of links;">
+      <a class="list-group-item"
+         routerLink="{{ link.href }}">
+
+        <div class="au-home-item">
+          <h3 class="list-group-item-heading">
+            <span>{{ link.title }}</span>
+
+            <span data-toggle="tooltip"
+                  data-placement="top"
+                  title="here you can remove wrong, useless or outdated project project..."
+                  data-original-title="Remove that project"></span>
+          </h3>
+
+          <div class="list-group-item-text">
+            {{ link.description }}
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>

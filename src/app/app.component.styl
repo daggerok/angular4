@@ -1,2 +1,51 @@
-#app
-  padding 2%
+// // see vendors.ts
+//@import '~bootstrap/dist/css/bootstrap.css'
+
+body
+  overflow-y scroll
+
+#content
+  padding-top 75px
+
+.router-outlet
+  padding-top 2.5%
+
+/*
+  common transition styles (reusing in projects and users)
+
+  usage:
+    - outer container should has selector 'au-transition-container'
+    - innet container with text should has selector '.class="au-transition-text-item'
+
+  <ul>
+    <li class="au-transition-container">
+      ...
+      <span class="au-transition-text-item">
+        this text color will be inverted
+        and opposite to bgackground-color
+        of au-transition-container element
+      </span>
+      ...
+    </li>
+  </ul>
+ */
+delay = 0.5s
+color = whitesmoke
+inverseColor = grey
+
+.au-transition-container
+  .au-transition-text-item
+    color inverseColor
+
+  transition all delay ease
+  box-shadow none
+  opacity 0.1%
+
+.au-transition-container:hover
+  .au-transition-text-item
+    color color
+
+  background-color inverseColor
+
+.au-list-item
+  padding 1%

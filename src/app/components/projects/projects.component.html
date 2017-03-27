@@ -1,0 +1,21 @@
+<au-jumbotron>
+  <h1>Edit Projects</h1>
+
+  <p>Here you can remove any useless or for some reasons not actual projects</p>
+
+  <form class="form-control-static">
+    <div class="form-group">
+      <input (input)="onInput($event)"
+             placeholder="Search Project"
+             class="form-control"
+             min="50"
+             id="search"
+             type="text">
+    </div>
+  </form>
+</au-jumbotron>
+
+<div class="list-group" *ngFor="let p of (projects | projects:filter)">
+  <au-project (projectDeleteEvent)="handleDeleteProject($event)"
+              [project]="p"></au-project>
+</div>

@@ -1,0 +1,27 @@
+<au-jumbotron>
+  <h1>Users Permissions</h1>
+
+  <p>Here you can assign administrative role to username from Sigma Software LDAP</p>
+
+  <form class="form-control-static">
+    <div class="form-group">
+      <input (change)="onInputChange($event)"
+             placeholder="Assing Admin Role by username"
+             class="form-control"
+             id="add-admin"
+             type="text"/>
+    </div>
+  </form>
+</au-jumbotron>
+
+<br>
+
+<ul class="list-group"
+    *ngFor="let user of users;">
+
+  <au-user [user]="user"
+           [revokeTooltip]="'revoke admin rights'"
+           [provideTooltip]="'provide admin rights'"
+           (adminUpdate)="handleAdminUpdate($event)"
+           (adminDelete)="handleAdminDelete($event)"></au-user>
+</ul>

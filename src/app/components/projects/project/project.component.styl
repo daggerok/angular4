@@ -1,0 +1,49 @@
+// todo:
+// re-use common functionality from app.component.styl
+// selectors: '.au-transition-container' and '.au-transition-text-item'
+
+delay = 0.5s
+actionColor = dimgray
+actionInverseColor = whitesmoke
+
+au-project
+  span.glyphicon.glyphicon-remove
+    font-size 100%
+    transition all delay ease
+
+  span.glyphicon.glyphicon-remove:hover
+    color #cf0000
+
+  a.list-group-item
+    h4
+      span
+        color actionColor
+    transition all delay ease
+    box-shadow none
+    opacity 0.1%
+    .popover-content
+      color actionInverseColor
+
+  a.list-group-item:hover
+    h4
+      span
+        color actionInverseColor
+    color actionInverseColor
+    background-color actionColor
+    .popover-content
+      color actionColor
+
+  div.popover
+    opacity 0.1%
+    .popover-title
+      color actionColor
+    .popover-content
+      color actionInverseColor
+    transition opacity color delay ease
+
+  div.popover:hover
+    opacity 0.9%
+    .popover-title
+      color red
+    .popover-content
+      color actionColor

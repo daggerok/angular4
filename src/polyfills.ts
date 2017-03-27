@@ -55,7 +55,9 @@ import 'core-js/es7/reflect';
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
-
+import 'reflect-metadata';
+import 'ts-helpers';
+import 'ie-shim';
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
@@ -67,12 +69,11 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
  */
 // import 'intl';  // Run `npm install --save intl`.
 
-/*
-declare var process: any;
-if (!IS_PRODUCTION) {
+import { isDevelopment } from './env/production';
+
+ if (isDevelopment()) {
   Error['stackTraceLimit'] = Infinity;
   require('zone.js/dist/long-stack-trace-zone');
 }
-*/
 
 import 'rxjs';

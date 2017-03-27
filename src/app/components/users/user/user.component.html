@@ -1,0 +1,32 @@
+<li class="list-group-item au-transition-container">
+  <h4 class="list-group-item-heading au-list-item">
+
+    <span *ngIf="!user.active"
+          data-placement="top"
+          data-toggle="tooltip"
+          title="{{ addTooltip }}"
+          (click)="handleAdminUpdate(true)"
+          class="glyphicon glyphicon-plus"></span>
+
+    <span *ngIf="user.active"
+          data-placement="top"
+          data-toggle="tooltip"
+          title="{{ revokeTooltip }}"
+          (click)="handleAdminUpdate(false)"
+          class="glyphicon glyphicon-minus"></span>
+
+    <span [ngClass]="{
+      'au-disabled': !user.active,
+      'au-transition-text-item': user.active
+    }">
+
+      {{ user.username }}
+    </span>
+
+    <span data-placement="top"
+          data-toggle="tooltip"
+          title="{{ deleteTooltip }}"
+          (click)="handleAdminDelete(false)"
+          class="glyphicon glyphicon-remove pull-right"></span>
+  </h4>
+</li>
