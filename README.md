@@ -1,8 +1,8 @@
-# angular4-quickstart [![build](https://travis-ci.org/daggerok/angular4.svg?branch=master)](https://travis-ci.org/daggerok/angular4)
+# angular4-cli-webpack2 [![build](https://travis-ci.org/daggerok/angular4.svg?branch=master)](https://travis-ci.org/daggerok/angular4)
 
-@angular@4
-@angular/cli
-webpack
+angular 4
+angular cli
+webpack 2
 
 ```bash
 ncu -u -x @types/jasmine,typescript,codelyzer

@@ -1,5 +1,5 @@
 {
-  "name": "angular4-quickstart",
+  "name": "angular4-cli-webpack2",
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
@@ -11,19 +11,22 @@
     "ttd": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "wp:start": "concurrently 'npm run webpack-dev-server' -k -s first -n start --prefix [{name}:{pid}] -c magenta #black,red,green,yellow,blue,magenta,cyan,white,gray,bgBlack,bgRed,bgGreen,bgYellow,bgBlue,bgMagenta,bgCyan,bgWhite",
+    "custom:start": "concurrently 'npm run webpack-dev-server' -k -s first -n start --prefix [{name}:{pid}] -c magenta #black,red,green,yellow,blue,magenta,cyan,white,gray,bgBlack,bgRed,bgGreen,bgYellow,bgBlue,bgMagenta,bgCyan,bgWhite",
     "webpack-dev-server": "webpack-dev-server --env development",
-    "precompile": "rimraf -rf ./dist",
+    "custom:build": "npm run compile -- --env production",
     "compile": "webpack --progress --colors",
-    "wp:build": "npm run compile -- --env production",
-    "prewp:serve": "npm run wp:build",
-    "wp:serve": "lite-server"
+    "precompile": "rimraf -rf ./dist",
+    "custom:serve": "lite-server",
+    "precustom:serve": "npm run custom:build",
+    "custom:ttd": "karma start -c karma.conf.js",
+    "custom:test": "npm run custom:ttd -- --singleRun",
+    "custom:lint": "tslint --config tslint.json 'e2e/*.ts' 'e2e/**/*.ts' 'src/*.ts' 'src/**/*.ts'"
   },
   "pre-push": [
     "test",
     "lint",
     "build",
-    "wp:build"
+    "custom:build"
   ],
   "private": true,
   "dependencies": {
