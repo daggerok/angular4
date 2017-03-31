@@ -1,7 +1,7 @@
 version: '2'
 services:
   nginx:
-    container_name: angular2-webapp
+    container_name: angular4-webapp
     image: nginx:1.10.3-alpine
     volumes:
       - 'nginx-volume:/var/log/nginx'

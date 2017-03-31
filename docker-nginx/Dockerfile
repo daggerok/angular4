@@ -5,4 +5,4 @@
 
 FROM nginx:1.10.3-alpine
 COPY dist /usr/share/nginx/html
-COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY docker-nginx/default.conf /etc/nginx/conf.d/default.conf
