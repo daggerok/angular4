@@ -1,7 +1,7 @@
 # angular4-webpack2-quickstart [![build](https://travis-ci.org/daggerok/angular4.svg?branch=webpack)](https://travis-ci.org/daggerok/angular4)
 
-@angular@4
-webpack
+angular 4
+webpack 2
 
 ```bash
 npm i -g yarn
@@ -12,5 +12,5 @@ yarn serve
 yarn start
 yarn lint
 yarn test
-ncu -u -x @types/jasmine
+ncu -u -x @types/jasmine,tslint
 ```
